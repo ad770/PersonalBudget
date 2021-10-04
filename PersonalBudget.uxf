@@ -267,7 +267,6 @@ PersonalBudget()
 --
 + UsersFile()
 - getUserData() : User
-- ? convertUserDataToDataSeparatedByVerticalLines() : String
 + loadUserDataFromXmlFile() : vector &lt;User&gt;
 + writeUserDataToXmlFile() : void
 + writeAllUsersToXmlFile() : void
