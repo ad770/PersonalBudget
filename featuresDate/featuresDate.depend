@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1634594444 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\999_test\featuresdate\main.cpp
+	<iostream>
+	<ctime>
+	<string>
+	"Markup.h"
+
+1303067212 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\999_test\featuresdate\markup.cpp
+	<stdio.h>
+	"Markup.h"
+	<errno.h>
+	<iconv.h>
+	<windows.h>
+	<mbstring.h>
+
+1303067212 d:\users\adi\pulpit\programowanie\przyszlyprogramista\999_test\featuresdate\markup.h
+	<stdlib.h>
+	<string.h>
+	<string>
+	<afx.h>
+
