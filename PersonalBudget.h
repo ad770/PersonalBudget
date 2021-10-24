@@ -20,7 +20,7 @@ class PersonalBudget {
 public:
     PersonalBudget(
 
-                   );
+    );
 
     void userRegistration();
     void userLogging();

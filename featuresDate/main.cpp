@@ -68,6 +68,10 @@ int main()
 
     xml.FindElem("incomesFile");
     xml.IntoElem();
+    xml.FindElem("income");
+    xml.IntoElem();
+
+
 
     while (xml.FindElem("income")) {
         xml.IntoElem();

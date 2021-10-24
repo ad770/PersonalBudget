@@ -19,3 +19,23 @@
 	<string>
 	<afx.h>
 
+1634672766 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\featuresdate\main.cpp
+	<iostream>
+	<ctime>
+	<string>
+	"Markup.h"
+
+1634672766 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\featuresdate\markup.h
+	<stdlib.h>
+	<string.h>
+	<string>
+	<afx.h>
+
+1634672766 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\featuresdate\markup.cpp
+	<stdio.h>
+	"Markup.h"
+	<errno.h>
+	<iconv.h>
+	<windows.h>
+	<mbstring.h>
+
