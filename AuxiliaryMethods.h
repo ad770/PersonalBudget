@@ -4,8 +4,10 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include <string>
 #include <cctype>
 #include <ctime>
+
 #include "Markup.h"
 
 using namespace std;
@@ -20,7 +22,7 @@ public:
     static bool checkDateFormat(string inputDate);
     static bool checkDateScope(string inputDate);
     static bool checkValueFormat(string inputValue);
-    static int convertCommaToDot();
+    static int convertCommaToDot(string value);
     static int stringToInt(string number);
     static string intToString(int number);
     static void isCurrentPasswordCorrect();

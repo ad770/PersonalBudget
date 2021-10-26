@@ -11,7 +11,7 @@ char Menu::selectFromMainMenu() {
     cout << "9. Koniec programu" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
-    choice = AuxiliaryMethods::getChar();
+    choice = AuxiliaryMethods::inputChar();
 
     return choice;
 }
@@ -32,7 +32,7 @@ char Menu::selectFromLoggedInUserMenu() {
     cout << "7. Wyloguj sie" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
-    choice = AuxiliaryMethods::getChar();
+    choice = AuxiliaryMethods::inputChar();
 
     return choice;
 }
@@ -47,11 +47,11 @@ char Menu::selectFromIncomesMenu() {
     cout << "2 - Dodaj przychod z inna data" << endl;
     cout << "3 - Powrot " << endl;
     cout << endl << "Twoj wybor: ";
-    choice = AuxiliaryMethods::getChar();
+    choice = AuxiliaryMethods::inputChar();
 
     return choice;
 
-};
+}
 
 
 char Menu::selectFromExpensesMenu() {
@@ -63,6 +63,7 @@ char Menu::selectFromExpensesMenu() {
     cout << "2 - Dodaj wydatek z inna data" << endl;
     cout << "3 - Powrot " << endl;
     cout << endl << "Twoj wybor: ";
-    choice = AuxiliaryMethods::getChar();
+    choice = AuxiliaryMethods::inputChar();
 
     return choice;
+}

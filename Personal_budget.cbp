@@ -36,8 +36,12 @@
 		</Compiler>
 		<Unit filename="AuxiliaryMethods.cpp" />
 		<Unit filename="AuxiliaryMethods.h" />
+		<Unit filename="Expense.cpp" />
+		<Unit filename="Expense.h" />
 		<Unit filename="ExpensesFile.cpp" />
 		<Unit filename="ExpensesFile.h" />
+		<Unit filename="Income.cpp" />
+		<Unit filename="Income.h" />
 		<Unit filename="IncomesFile.cpp" />
 		<Unit filename="IncomesFile.h" />
 		<Unit filename="Markup.cpp" />
@@ -48,10 +52,10 @@
 		<Unit filename="PersonalBudget.h" />
 		<Unit filename="TextFile.cpp" />
 		<Unit filename="TextFile.h" />
+		<Unit filename="Transaction.cpp" />
+		<Unit filename="Transaction.h" />
 		<Unit filename="TransactionsManager.cpp" />
 		<Unit filename="TransactionsManager.h" />
-		<Unit filename="Transtaction.cpp" />
-		<Unit filename="Transtaction.h" />
 		<Unit filename="User.cpp" />
 		<Unit filename="User.h" />
 		<Unit filename="UserManager.cpp" />

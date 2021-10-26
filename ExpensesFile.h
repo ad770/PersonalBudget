@@ -1,15 +1,33 @@
 #ifndef EXPENSESFILE_H
 #define EXPENSESFILE_H
 
+#include <iostream>
+#include <algorithm>
+#include <vector>
 
-class ExpensesFile
-{
-    public:
-        ExpensesFile();
+#include "Expense.h"
+#include "TextFile.h"
+#include "UsersFile.h"
+#include "AuxiliaryMethods.h"
+#include "Markup.h"
 
-    protected:
+using namespace std;
 
-    private:
+class ExpensesFile : public TextFile {
+    int lastUserId;
+    int getUserIdFromXmlFile();
+    Expense getExpenseData();
+
+public:
+    ExpensesFile(string expensesFilename) : TextFile(expensesFilename) {
+        lastUserId = 0;
+    };
+
+    vector <Expense> loadExpensesOfLoggedInUserFromXmlFile(int loggedInUserId);
+    int loadLastExpenseIdFromXmlFile();
+    void writeExpenseToXmlFile();
+    int getExpenseIdFromXmlFile();
+
 };
 
 #endif // EXPENSESFILE_H

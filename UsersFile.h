@@ -15,15 +15,15 @@ using namespace std;
 
 class UsersFile : public TextFile {
 
-    User getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
+//    User getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
     string stringToInt(User user); //???
 
 public:
     UsersFile(string usersFilename) : TextFile(usersFilename) {};
 
-    vector <User> loadUserDataFromXmlFile();
-    void writeUserDataToXmlFile(User user);
-    void writeAllUsersToXmlFile(vector <User> &users);
+        vector <User> loadUsersDataFromXmlFile();
+        void writeUserDataToXmlFile(User user);
+        void writeAllUsersToXmlFile(vector <User> &users);
 
 };
 

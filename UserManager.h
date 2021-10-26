@@ -27,7 +27,7 @@ class UserManager {
 public:
     UserManager(string usersFilename) : usersFile(usersFilename) {
         loggedInUserId = 0;
-        users = usersFile.loadUsersDataFromXmlFile;
+        users = usersFile.loadUsersDataFromXmlFile();
     };
     void userRegistration();
     void userLogging();
@@ -35,7 +35,7 @@ public:
     void displayAllUsers();
     int getLoggedInUserId();
     int userLogout();
-    bool isUserLoggedIn():
-    };
+    bool isUserLoggedIn();
+};
 
 #endif // USERMANAGER_H

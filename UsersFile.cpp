@@ -1,6 +1,6 @@
 #include "UsersFile.h"
 
-Uzytkownik UsersFile::getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
+//User UsersFile::getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
 //    Uzytkownik uzytkownik;
 //    string pojedynczaDanaUzytkownika = "";
 //    int numerPojedynczejDanejUzytkownika = 1;
@@ -25,7 +25,7 @@ Uzytkownik UsersFile::getUserData(string daneJednegoUzytkownikaOddzielonePionowy
 //        }
 //    }
 //    return uzytkownik;
-}
+//}
 
 //string UsersFile::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik) {
 //    string liniaZDanymiUzytkownika = "";
@@ -36,51 +36,60 @@ Uzytkownik UsersFile::getUserData(string daneJednegoUzytkownikaOddzielonePionowy
 //    return liniaZDanymiUzytkownika;
 //}
 
-vector <Uzytkownik> UsersFile::loadUserDataFromXmlFile() {
+vector <User> UsersFile::loadUsersDataFromXmlFile() {
     CMarkup xml;
-    Uzytkownik uzytkownik;
-    vector <uzytkownik> uzytkownicy;
+    User user;
+    vector <User> users;
 
-    if (!xml.Load(usersFilename)) {
+    if (!xml.SetDoc(getFilename())) {
         cout << "Blad odczytu pliku!";
-        break;
+        //return 0;
     }
-    xml.FindElem("incomesFile");
+    xml.FindElem("usersFile");
     xml.IntoElem();
 
-//    fstream plikTekstowy;
-//    string daneJednegoUzytkownikaOddzielonePionowymiKreskami = "";
-//    Uzytkownik uzytkownik;
-//    vector <Uzytkownik> uzytkownicy;
-//    plikTekstowy.open(pobierzNazwePliku().c_str(), ios::in);
-//
-//    if (plikTekstowy.good() == true) {
-//        while (getline(plikTekstowy, daneJednegoUzytkownikaOddzielonePionowymiKreskami)) {
-//            uzytkownik = pobierzDaneUzytkownika(daneJednegoUzytkownikaOddzielonePionowymiKreskami);
-//            uzytkownicy.push_back(uzytkownik);
-//        }
-//
-//    }
-//    plikTekstowy.close();
-//    return uzytkownicy;
+    while (xml.FindElem("user")) {
+        xml.IntoElem();
+
+        xml.FindElem("userId");
+        user.setUserId(atoi(xml.GetData().c_str()));
+        xml.FindElem("login");
+        user.setLogin(xml.GetData());
+        xml.FindElem("password");
+        user.setPassword(xml.GetData());
+        xml.FindElem("name");
+        user.setName(xml.GetData());
+        xml.FindElem("surname");
+        user.setSurname(xml.GetData());
+
+        users.push_back(user);
+
+        xml.OutOfElem();
+    }
+
+    return users;
 }
 
 void UsersFile::writeUserDataToXmlFile(User user) {
-//    fstream plikTekstowy;
-//    string liniaZDanymiUzytkownika = "";
-//    plikTekstowy.open(pobierzNazwePliku().c_str(), ios::app);
-//
-//    if (plikTekstowy.good() == true) {
-//        liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
-//
-//        if (czyPlikJestPusty() == true) {
-//            plikTekstowy << liniaZDanymiUzytkownika;
-//        } else {
-//            plikTekstowy << endl << liniaZDanymiUzytkownika ;
-//        }
-//    } else
-//        cout << "Nie udalo sie otworzyc pliku " << pobierzNazwePliku() << " i zapisac w nim danych." << endl;
-//    plikTekstowy.close();
+    CMarkup xml;
+    if (!xml.Load(getFilename())) {
+        cout << "Blad odczytu pliku!";
+        return;
+    }
+    xml.FindElem("usersFile");
+    xml.IntoElem();
+    xml.FindElem("users");
+    xml.IntoElem();
+    xml.AddElem("userId",user.getUserId());
+    xml.AddElem("login",user.getLogin());
+    xml.AddElem("password",user.getPassword());
+    xml.AddElem("name",user.getName());
+    xml.AddElem("surname",user.getSurname());
+
+    xml.OutOfElem();
+    xml.OutOfElem();
+
+    xml.Save(getFilename());
 }
 
 void UsersFile::writeAllUsersToXmlFile(vector <User> &users) {

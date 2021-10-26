@@ -1,6 +1,6 @@
 #include "AuxiliaryMethods.h"
 
-static char AuxiliaryMethods::inputChar() {
+char AuxiliaryMethods::inputChar() {
     string input = "";
     char textChar  = {0};
 
@@ -14,21 +14,21 @@ static char AuxiliaryMethods::inputChar() {
         cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
     }
     return textChar;
-};
-static string AuxiliaryMethods::inputNumber(string inputText, int charPosition) {
+}
+string AuxiliaryMethods::inputNumber(string inputText, int charPosition) {
     string number = "";
     while(isdigit(inputText[charPosition]) == true) {
         number += inputText[charPosition];
         charPosition ++;
     }
     return number;
-};
-static string AuxiliaryMethods::inputLine() {
+}
+string AuxiliaryMethods::inputLine() {
     string input = "";
     getline(cin, input);
     return input;
-};
-static int AuxiliaryMethods::inputInteger() {
+}
+int AuxiliaryMethods::inputInteger() {
     string input = "";
     int number = 0;
 
@@ -41,15 +41,15 @@ static int AuxiliaryMethods::inputInteger() {
         cout << "To nie jest liczba. Wpisz ponownie. " << endl;
     }
     return number;
-};
-static string AuxiliaryMethods::swapToFirstCapitalLetterThanLowercaseLetters(string inputText) {
+}
+string AuxiliaryMethods::swapToFirstCapitalLetterThanLowercaseLetters(string inputText) {
     if (!inputText.empty()) {
         transform(inputText.begin(), inputText.end(), inputText.begin(), ::tolower);
         inputText[0] = toupper(inputText[0]);
     }
     return inputText;
-};
-static bool AuxiliaryMethods::checkDateFormat(string inputDate) {
+}
+bool AuxiliaryMethods::checkDateFormat(string inputDate) {
     bool check = true;
 
     for (int i=0; i<10; i++) {
@@ -59,8 +59,8 @@ static bool AuxiliaryMethods::checkDateFormat(string inputDate) {
         } else if (inputDate[i] < 48 || inputDate[i] > 57) check = false;
     }
     return check;
-};
-static bool AuxiliaryMethods::checkDateScope(string inputDate) {
+}
+bool AuxiliaryMethods::checkDateScope(string inputDate) {
     bool check = true;
 
     int year = atoi(inputDate.substr(0,4).c_str());
@@ -77,43 +77,52 @@ static bool AuxiliaryMethods::checkDateScope(string inputDate) {
     else if (day > 31) check = false;
 
     return check;
-};
-static void AuxiliaryMethods::checkValueFormat() {
+}
+bool AuxiliaryMethods::checkValueFormat(string inputValue) {
+return true;
+}
+int AuxiliaryMethods::convertCommaToDot(string value) {
+return 1;
+}
+int AuxiliaryMethods::stringToInt(string number) {
+    int integer;
+    string shortNumber;
 
-};
-static int AuxiliaryMethods::convertCommaToDot() {
+    shortNumber = number.erase(4,1);
+    shortNumber = shortNumber.erase(6,1);
 
-};
-static int AuxiliaryMethods::stringToInt(string number) {
-//    int liczbaInt;
-//    istringstream iss(liczba);
-//    iss >> liczbaInt;
-//
-//    return liczbaInt;
-};
-static string AuxiliaryMethods::intToString(int number) {
-//    ostringstream ss;
-//    ss << liczba;
-//    string str = ss.str();
-//    return str;
-};
-static void AuxiliaryMethods::isCurrentPasswordCorrect() {
+    istringstream iss(shortNumber);
+    iss >> integer;
 
-};
-static void AuxiliaryMethods::loadCurrentDate() {
+    return integer;
+}
+string AuxiliaryMethods::intToString(int number) {
+    string shortNumber, numberWithDash;
 
-};
-static void AuxiliaryMethods::checkLenghtOfTheMonth() {
+    ostringstream ss;
+    ss << number;
+    shortNumber = ss.str();
+    numberWithDash = shortNumber.insert(4,"-");
+    numberWithDash = numberWithDash.insert(7,"-");
 
-};
-static void AuxiliaryMethods::changeFilename(string oldFilename, string newFilename) {
+    return numberWithDash;
+}
+void AuxiliaryMethods::isCurrentPasswordCorrect() {
+
+}
+void AuxiliaryMethods::loadCurrentDate() {
+
+}
+void AuxiliaryMethods::checkLenghtOfTheMonth() {
+
+}
+void AuxiliaryMethods::changeFilename(string oldFilename, string newFilename) {
     if (rename(oldFilename.c_str(), newFilename.c_str()) == 0) {}
     else
         cout << "Nazwa pliku nie zostala zmieniona." << oldFilename << endl;
-};
-static void AuxiliaryMethods::deleteFile(string filenameWithFiletype) {
+}
+void AuxiliaryMethods::deleteFile(string filenameWithFiletype) {
     if (remove(filenameWithFiletype.c_str()) == 0) {}
     else
         cout << "Nie udalo sie usunac pliku " << filenameWithFiletype << endl;
 }
-};

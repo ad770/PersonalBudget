@@ -12,7 +12,7 @@ bool TextFile::isFileEmpty() {
     if (textFile.good() == true) {
         textFile.seekg(0, ios::end);
         if (textFile.tellg() != 0)
-            pusty = false;
+            emptyFile = false;
     }
 
     textFile.close();
