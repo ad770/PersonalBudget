@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <cstdlib>
 
 #include "Income.h"
 #include "TextFile.h"
@@ -16,7 +17,7 @@ using namespace std;
 class IncomesFile : public TextFile {
     int lastUserId;
     int getUserIdFromXmlFile();
-    Income getIncomeData();
+//    Income getIncomeData();
 
 public:
     IncomesFile(string incomesFilename) : TextFile(incomesFilename) {
@@ -25,7 +26,7 @@ public:
 
     vector <Income> loadIncomesOfLoggedInUserFromXmlFile(int loggedInUserId);
     int loadLastIncomeIdFromXmlFile();
-    void writeIncomeToXmlFile();
+    void writeIncomeToXmlFile(Income income);
     int getIncomeIdFromXmlFile();
 
 };

@@ -15,8 +15,6 @@ class Transaction {
     string value;
 
 public:
-
-    Transaction();
     //void setIncomeId(int newIncomeId);
     //void setExpenseId(int newExpenseId);
     void setUserId(int newUserId);

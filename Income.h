@@ -10,10 +10,7 @@ class Income : public Transaction {
     int incomeId;
 
 public:
-    Income();
-
     void setIncomeId(int newIncomeId);
-
     int getIncomeId();
 };
 

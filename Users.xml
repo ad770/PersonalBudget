@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UsersFile>
+<User>
+<UserId>1</UserId>
+<Login>1</Login>
+<Password>1</Password>
+<Name>1</Name>
+<Surname>1</Surname>
+</User>
+<User>
+<UserId>2</UserId>
+<Login>2</Login>
+<Password>2</Password>
+<Name>2</Name>
+<Surname>2</Surname>
+</User>
+</UsersFile>

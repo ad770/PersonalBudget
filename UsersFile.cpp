@@ -41,25 +41,26 @@ vector <User> UsersFile::loadUsersDataFromXmlFile() {
     User user;
     vector <User> users;
 
-    if (!xml.SetDoc(getFilename())) {
-        cout << "Blad odczytu pliku!";
-        //return 0;
+    if (!xml.Load(getFilename())) {
+        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xml.AddElem("UsersFile");
+        xml.Save(getFilename());
     }
-    xml.FindElem("usersFile");
+    xml.FindElem("UsersFile");
     xml.IntoElem();
 
-    while (xml.FindElem("user")) {
+    while (xml.FindElem("User")) {
         xml.IntoElem();
 
-        xml.FindElem("userId");
+        xml.FindElem("UserId");
         user.setUserId(atoi(xml.GetData().c_str()));
-        xml.FindElem("login");
+        xml.FindElem("Login");
         user.setLogin(xml.GetData());
-        xml.FindElem("password");
+        xml.FindElem("Password");
         user.setPassword(xml.GetData());
-        xml.FindElem("name");
+        xml.FindElem("Name");
         user.setName(xml.GetData());
-        xml.FindElem("surname");
+        xml.FindElem("Surname");
         user.setSurname(xml.GetData());
 
         users.push_back(user);
@@ -74,22 +75,23 @@ void UsersFile::writeUserDataToXmlFile(User user) {
     CMarkup xml;
     if (!xml.Load(getFilename())) {
         cout << "Blad odczytu pliku!";
-        return;
+    } else {
+
+        xml.FindElem("UsersFile");
+        xml.IntoElem();
+        xml.AddElem("User");
+        xml.IntoElem();
+        xml.AddElem("UserId",user.getUserId());
+        xml.AddElem("Login",user.getLogin());
+        xml.AddElem("Password",user.getPassword());
+        xml.AddElem("Name",user.getName());
+        xml.AddElem("Surname",user.getSurname());
+
+        xml.OutOfElem();
+        xml.OutOfElem();
+
+        xml.Save(getFilename());
     }
-    xml.FindElem("usersFile");
-    xml.IntoElem();
-    xml.FindElem("users");
-    xml.IntoElem();
-    xml.AddElem("userId",user.getUserId());
-    xml.AddElem("login",user.getLogin());
-    xml.AddElem("password",user.getPassword());
-    xml.AddElem("name",user.getName());
-    xml.AddElem("surname",user.getSurname());
-
-    xml.OutOfElem();
-    xml.OutOfElem();
-
-    xml.Save(getFilename());
 }
 
 void UsersFile::writeAllUsersToXmlFile(vector <User> &users) {

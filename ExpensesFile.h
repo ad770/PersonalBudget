@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <cstdlib>
 
 #include "Expense.h"
 #include "TextFile.h"
@@ -16,7 +17,7 @@ using namespace std;
 class ExpensesFile : public TextFile {
     int lastUserId;
     int getUserIdFromXmlFile();
-    Expense getExpenseData();
+//    Expense getExpenseData();
 
 public:
     ExpensesFile(string expensesFilename) : TextFile(expensesFilename) {
@@ -25,7 +26,7 @@ public:
 
     vector <Expense> loadExpensesOfLoggedInUserFromXmlFile(int loggedInUserId);
     int loadLastExpenseIdFromXmlFile();
-    void writeExpenseToXmlFile();
+    void writeExpenseToXmlFile(Expense expense);
     int getExpenseIdFromXmlFile();
 
 };

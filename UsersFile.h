@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <fstream>
 #include <cstdlib>
 
 #include "User.h"

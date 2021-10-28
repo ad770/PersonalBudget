@@ -13,6 +13,11 @@ User UserManager::setNewUserData() {
     cout << "Podaj haslo: ";
     user.setPassword(AuxiliaryMethods::inputLine());
 
+    cout << "Podaj imie: ";
+    user.setName(AuxiliaryMethods::inputLine());
+
+    cout << "Podaj nazwisko: ";
+    user.setSurname(AuxiliaryMethods::inputLine());
     return user;
 }
 bool UserManager::isLoginExist(string login) {

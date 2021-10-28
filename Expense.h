@@ -8,9 +8,8 @@ using namespace std;
 
 class Expense : public Transaction {
     int expenseId;
-public:
-    Expense();
 
+public:
     void setExpenseId(int newExpenseId);
     int getExpenseId();
 };

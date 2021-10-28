@@ -22,9 +22,12 @@ class TransactionsManager {
     IncomesFile incomesFile;
     ExpensesFile expensesFile;
     Menu menu;
-    string usersFilename = "Users.txt";
-    string incomesFilename = "Incomes.txt";
-    string expensesFilename = "Expenses.txt";
+    int getNewIncomeId();
+    int getNewExpenseId();
+
+//    string usersFilename = "Users.xml";
+    string incomesFilename = "Incomes.xml";
+    string expensesFilename = "Expenses.xml";
 
     Income setNewIncomeData();
     Expense setNewExpenseData();

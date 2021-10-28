@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExpensesFile>
+<Expense>
+<UserId>2</UserId>
+<Date>111321312</Date>
+<Item>321312</Item>
+<Value>321</Value>
+</Expense>
+<Expense>
+<UserId>1</UserId>
+<Date>1321</Date>
+<Item>321</Item>
+<Value>321</Value>
+</Expense>
+<Expense>
+<UserId>2</UserId>
+<Date>3</Date>
+<Item>3</Item>
+<Value>3</Value>
+</Expense>
+</ExpensesFile>
