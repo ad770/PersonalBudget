@@ -6,6 +6,8 @@
 #include <windows.h>
 #include <fstream>
 #include <sstream>
+#include <ctime>
+#include <string>
 
 #include "Transaction.h"
 #include "IncomesFile.h"

@@ -27,7 +27,7 @@ vector <Expense> ExpensesFile::loadExpensesOfLoggedInUserFromXmlFile(int loggedI
         xml.FindElem("UserId");
         expense.setUserId(atoi(xml.GetData().c_str()));
         xml.FindElem("Date");
-        expense.setDate(xml.GetData());
+        expense.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(xml.GetData()));
         xml.FindElem("Item");
         expense.setItem(xml.GetData());
         xml.FindElem("Value");

@@ -79,10 +79,25 @@ bool AuxiliaryMethods::checkDateScope(string inputDate) {
     return check;
 }
 bool AuxiliaryMethods::checkValueFormat(string inputValue) {
-return true;
+    return true;
+}
+string AuxiliaryMethods::convertDateToIntWithoutDashes(string date) {
+    string dateWithoutDashes = date;
+
+    for (int i=0; i<dateWithoutDashes.length(); i++) {
+        if (dateWithoutDashes[i]==45)
+            dateWithoutDashes.erase(i,1);
+    }
+//    string dateWithoutDashes = date.erase(4,1);
+//    dateWithoutDashes = dateWithoutDashes.erase(6,1);
+    //zmienic na bardziej zaawansowane --> jezeli znajdziesz znak "-" to go usun
+    return dateWithoutDashes;
 }
 int AuxiliaryMethods::convertCommaToDot(string value) {
-return 1;
+    for (int i=0; i<value.length(); i++) {
+        if (value[i]==46)
+            value[i]=44;
+    }
 }
 int AuxiliaryMethods::stringToInt(string number) {
     int integer;

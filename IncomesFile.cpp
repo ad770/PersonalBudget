@@ -27,7 +27,7 @@ vector <Income> IncomesFile::loadIncomesOfLoggedInUserFromXmlFile(int loggedInUs
         xml.FindElem("UserId");
         income.setUserId(atoi(xml.GetData().c_str()));
         xml.FindElem("Date");
-        income.setDate(xml.GetData());
+        income.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(xml.GetData()));
         xml.FindElem("Item");
         income.setItem(xml.GetData());
         xml.FindElem("Value");
