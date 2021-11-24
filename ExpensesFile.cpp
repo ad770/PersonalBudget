@@ -1,11 +1,5 @@
 #include "ExpensesFile.h"
 
-int ExpensesFile::getUserIdFromXmlFile() {
-
-}
-//Expense ExpensesFile::getExpenseData() {
-//
-//}
 vector <Expense> ExpensesFile::loadExpensesOfLoggedInUserFromXmlFile(int loggedInUserId) {
     CMarkup xml;
     Expense expense;
@@ -22,26 +16,25 @@ vector <Expense> ExpensesFile::loadExpensesOfLoggedInUserFromXmlFile(int loggedI
     while (xml.FindElem("Expense")) {
         xml.IntoElem();
 
-        xml.FindElem("ExpenseId");
-        expense.setExpenseId(atoi(xml.GetData().c_str()));
         xml.FindElem("UserId");
-        expense.setUserId(atoi(xml.GetData().c_str()));
-        xml.FindElem("Date");
-        expense.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(xml.GetData()));
-        xml.FindElem("Item");
-        expense.setItem(xml.GetData());
-        xml.FindElem("Value");
-        expense.setValue(xml.GetData());
+        if (atoi(xml.GetData().c_str())!=loggedInUserId)
+            xml.OutOfElem();
+        else {
+            expense.setUserId(atoi(xml.GetData().c_str()));
+            xml.FindElem("ExpenseId");
+            expense.setExpenseId(atoi(xml.GetData().c_str()));
+            xml.FindElem("Date");
+            expense.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(xml.GetData()));
+            xml.FindElem("Item");
+            expense.setItem(xml.GetData());
+            xml.FindElem("Value");
+            expense.setValue(xml.GetData());
 
-        expenses.push_back(expense);
-
-        xml.OutOfElem();
+            expenses.push_back(expense);
+            xml.OutOfElem();
+        }
     }
-
     return expenses;
-}
-int ExpensesFile::loadLastExpenseIdFromXmlFile() {
-
 }
 void ExpensesFile::writeExpenseToXmlFile(Expense expense) {
     CMarkup xml;
@@ -63,7 +56,4 @@ void ExpensesFile::writeExpenseToXmlFile(Expense expense) {
 
         xml.Save(getFilename());
     }
-}
-int ExpensesFile::getExpenseIdFromXmlFile() {
-
 }

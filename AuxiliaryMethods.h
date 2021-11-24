@@ -21,14 +21,10 @@ public:
     static string swapToFirstCapitalLetterThanLowercaseLetters(string inputText);
     static bool checkDateFormat(string inputDate);
     static bool checkDateScope(string inputDate);
-    static bool checkValueFormat(string inputValue);
     static string convertDateToIntWithoutDashes(string date);
-    static int convertCommaToDot(string value);
+    static string convertCommaToDot(string value);
     static int stringToInt(string number);
     static string intToString(int number);
-    static void isCurrentPasswordCorrect();
-    static void loadCurrentDate();
-    static void checkLenghtOfTheMonth();
     static void changeFilename(string oldFilename, string newFilename);
     static void deleteFile(string filenameWithFiletype);
 };

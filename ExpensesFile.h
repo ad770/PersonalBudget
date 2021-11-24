@@ -16,8 +16,6 @@ using namespace std;
 
 class ExpensesFile : public TextFile {
     int lastUserId;
-    int getUserIdFromXmlFile();
-//    Expense getExpenseData();
 
 public:
     ExpensesFile(string expensesFilename) : TextFile(expensesFilename) {
@@ -25,10 +23,7 @@ public:
     };
 
     vector <Expense> loadExpensesOfLoggedInUserFromXmlFile(int loggedInUserId);
-    int loadLastExpenseIdFromXmlFile();
     void writeExpenseToXmlFile(Expense expense);
-    int getExpenseIdFromXmlFile();
-
 };
 
 #endif // EXPENSESFILE_H

@@ -14,16 +14,12 @@ using namespace std;
 
 class UsersFile : public TextFile {
 
-//    User getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
-    string stringToInt(User user); //???
-
 public:
     UsersFile(string usersFilename) : TextFile(usersFilename) {};
 
-        vector <User> loadUsersDataFromXmlFile();
-        void writeUserDataToXmlFile(User user);
-        void writeAllUsersToXmlFile(vector <User> &users);
-
+    vector <User> loadUsersDataFromXmlFile();
+    void writeUserDataToXmlFile(User user);
+    void changePasswordInXmlFile(User user);
 };
 
 #endif // USERSFILE_H

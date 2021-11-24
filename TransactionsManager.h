@@ -8,6 +8,7 @@
 #include <sstream>
 #include <ctime>
 #include <string>
+#include <iomanip>
 
 #include "Transaction.h"
 #include "IncomesFile.h"
@@ -27,15 +28,11 @@ class TransactionsManager {
     int getNewIncomeId();
     int getNewExpenseId();
 
-//    string usersFilename = "Users.xml";
     string incomesFilename = "Incomes.xml";
     string expensesFilename = "Expenses.xml";
 
     Income setNewIncomeData();
     Expense setNewExpenseData();
-    void displayIncomeData();
-    void displayExpenseData();
-
 
 public:
     TransactionsManager(string incomesFilename, string expensesFilename, int loggedInUserId)

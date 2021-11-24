@@ -17,7 +17,6 @@ public:
     }
 
     string getFilename();
-//    bool isFileEmpty();
 };
 
 #endif // TEXTFILE_H

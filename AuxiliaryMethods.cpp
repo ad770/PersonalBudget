@@ -52,7 +52,7 @@ string AuxiliaryMethods::swapToFirstCapitalLetterThanLowercaseLetters(string inp
 bool AuxiliaryMethods::checkDateFormat(string inputDate) {
     bool check = true;
 
-    for (int i=0; i<10; i++) {
+    for (int i=0; i<inputDate.length(); i++) {
         if (i==4 || i==7) {
             if (inputDate[i] != 45) check = false;
             continue;
@@ -78,9 +78,6 @@ bool AuxiliaryMethods::checkDateScope(string inputDate) {
 
     return check;
 }
-bool AuxiliaryMethods::checkValueFormat(string inputValue) {
-    return true;
-}
 string AuxiliaryMethods::convertDateToIntWithoutDashes(string date) {
     string dateWithoutDashes = date;
 
@@ -88,16 +85,14 @@ string AuxiliaryMethods::convertDateToIntWithoutDashes(string date) {
         if (dateWithoutDashes[i]==45)
             dateWithoutDashes.erase(i,1);
     }
-//    string dateWithoutDashes = date.erase(4,1);
-//    dateWithoutDashes = dateWithoutDashes.erase(6,1);
-    //zmienic na bardziej zaawansowane --> jezeli znajdziesz znak "-" to go usun
     return dateWithoutDashes;
 }
-int AuxiliaryMethods::convertCommaToDot(string value) {
+string AuxiliaryMethods::convertCommaToDot(string value) {
     for (int i=0; i<value.length(); i++) {
-        if (value[i]==46)
-            value[i]=44;
+        if (value[i]==44)
+            value[i]=46;
     }
+    return value;
 }
 int AuxiliaryMethods::stringToInt(string number) {
     int integer;
@@ -121,15 +116,6 @@ string AuxiliaryMethods::intToString(int number) {
     numberWithDash = numberWithDash.insert(7,"-");
 
     return numberWithDash;
-}
-void AuxiliaryMethods::isCurrentPasswordCorrect() {
-
-}
-void AuxiliaryMethods::loadCurrentDate() {
-
-}
-void AuxiliaryMethods::checkLenghtOfTheMonth() {
-
 }
 void AuxiliaryMethods::changeFilename(string oldFilename, string newFilename) {
     if (rename(oldFilename.c_str(), newFilename.c_str()) == 0) {}

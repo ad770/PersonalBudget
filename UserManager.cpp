@@ -21,8 +21,8 @@ User UserManager::setNewUserData() {
     return user;
 }
 bool UserManager::isLoginExist(string login) {
-    for (int i=0; i<users.size(); i++) {
-        if (users[i].getLogin() == login) {
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
+        if (itr -> getLogin() == login) {
             cout << endl << "Istnieje uzytkownik o takim loginie." << endl;
             return true;
         }
@@ -50,12 +50,11 @@ void UserManager::userLogging() {
     cout << endl << "Podaj login: ";
     login = AuxiliaryMethods::inputLine();
 
-
     vector <User>::iterator itr = users.begin();
     while (itr != users.end()) {
         if (itr -> getLogin() == login) {
-            for (int trialsAmount = 3; trialsAmount > 0; trialsAmount--) {
-                cout << "Podaj haslo. Pozostalo prob: " << trialsAmount << ": ";
+            for (int trials = 3; trials > 0; trials--) {
+                cout << "Podaj haslo. Pozostalo prob: " << trials << ": ";
                 password = AuxiliaryMethods::inputLine();
 
                 if (itr -> getPassword() == password) {
@@ -76,25 +75,21 @@ void UserManager::userLogging() {
     return;
 }
 void UserManager::changeLoggedInUserPassword() {
+    User user;
     string newPassword = "";
     cout << "Podaj nowe haslo: ";
     newPassword = AuxiliaryMethods::inputLine();
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
         if (itr -> getUserId() == loggedInUserId) {
-            itr -> setPassword(newPassword);
-            cout << "Haslo zostalo zmienione." << endl << endl;
-            system("pause");
+                itr -> setPassword(newPassword);
+                cout << "Haslo zostalo zmienione." << endl << endl;
+                user.setUserId(itr ->getUserId());
+                user.setPassword(itr -> getPassword());
+                system("pause");
+            }
         }
-    }
-    usersFile.writeAllUsersToXmlFile(users);
-}
-void UserManager::displayAllUsers() {
-    for (int i=0; i<users.size(); i++) {
-        cout << users[i].getUserId() << endl;
-        cout << users[i].getLogin() << endl;
-        cout << users[i].getPassword() << endl;
-    }
+    usersFile.changePasswordInXmlFile(user);
 }
 int UserManager::getLoggedInUserId() {
     return loggedInUserId;
@@ -104,7 +99,7 @@ int UserManager::userLogout() {
     return loggedInUserId;
 };
 bool UserManager::isUserLoggedIn() {
-    if (loggedInUserId>0)
+    if (loggedInUserId > 0)
         return true;
     else
         return false;

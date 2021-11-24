@@ -1,11 +1,5 @@
 #include "IncomesFile.h"
 
-int IncomesFile::getUserIdFromXmlFile() {
-
-}
-//Income IncomesFile::getIncomeData() {
-//
-//}
 vector <Income> IncomesFile::loadIncomesOfLoggedInUserFromXmlFile(int loggedInUserId) {
     CMarkup xml;
     Income income;
@@ -22,26 +16,25 @@ vector <Income> IncomesFile::loadIncomesOfLoggedInUserFromXmlFile(int loggedInUs
     while (xml.FindElem("Income")) {
         xml.IntoElem();
 
-        xml.FindElem("IncomeId");
-        income.setIncomeId(atoi(xml.GetData().c_str()));
         xml.FindElem("UserId");
-        income.setUserId(atoi(xml.GetData().c_str()));
-        xml.FindElem("Date");
-        income.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(xml.GetData()));
-        xml.FindElem("Item");
-        income.setItem(xml.GetData());
-        xml.FindElem("Value");
-        income.setValue(xml.GetData());
+        if (atoi(xml.GetData().c_str())!=loggedInUserId)
+            xml.OutOfElem();
+        else {
+            income.setUserId(atoi(xml.GetData().c_str()));
+            xml.FindElem("IncomeId");
+            income.setIncomeId(atoi(xml.GetData().c_str()));
+            xml.FindElem("Date");
+            income.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(xml.GetData()));
+            xml.FindElem("Item");
+            income.setItem(xml.GetData());
+            xml.FindElem("Value");
+            income.setValue(xml.GetData());
 
-        incomes.push_back(income);
-
-        xml.OutOfElem();
+            incomes.push_back(income);
+            xml.OutOfElem();
+        }
     }
-
     return incomes;
-}
-int IncomesFile::loadLastIncomeIdFromXmlFile() {
-
 }
 void IncomesFile::writeIncomeToXmlFile(Income income) {
     CMarkup xml;
@@ -63,7 +56,4 @@ void IncomesFile::writeIncomeToXmlFile(Income income) {
 
         xml.Save(getFilename());
     }
-}
-int IncomesFile::getIncomeIdFromXmlFile() {
-
 }

@@ -32,6 +32,3 @@ void PersonalBudget::showBalanceOfSelectedPeriod() {
 void PersonalBudget::changeLoggedInUserPassword() {
     userManager.changeLoggedInUserPassword();
 }
-void PersonalBudget::displayAllUsers() {
-    userManager.displayAllUsers();
-}

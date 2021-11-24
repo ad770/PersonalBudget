@@ -1,41 +1,5 @@
 #include "UsersFile.h"
 
-//User UsersFile::getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
-//    Uzytkownik uzytkownik;
-//    string pojedynczaDanaUzytkownika = "";
-//    int numerPojedynczejDanejUzytkownika = 1;
-//
-//    for (int pozycjaZnaku = 0; pozycjaZnaku < daneJednegoUzytkownikaOddzielonePionowymiKreskami.length(); pozycjaZnaku++) {
-//        if (daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku] != '|') {
-//            pojedynczaDanaUzytkownika += daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku];
-//        } else {
-//            switch(numerPojedynczejDanejUzytkownika) {
-//            case 1:
-//                uzytkownik.ustawId(atoi(pojedynczaDanaUzytkownika.c_str()));
-//                break;
-//            case 2:
-//                uzytkownik.ustawLogin(pojedynczaDanaUzytkownika);
-//                break;
-//            case 3:
-//                uzytkownik.ustawHaslo(pojedynczaDanaUzytkownika);
-//                break;
-//            }
-//            pojedynczaDanaUzytkownika = "";
-//            numerPojedynczejDanejUzytkownika++;
-//        }
-//    }
-//    return uzytkownik;
-//}
-
-//string UsersFile::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik) {
-//    string liniaZDanymiUzytkownika = "";
-//    liniaZDanymiUzytkownika += MetodyPomocnicze::konwerjsaIntNaString(uzytkownik.pobierzId())+ '|';
-//    liniaZDanymiUzytkownika += uzytkownik.pobierzLogin() + '|';
-//    liniaZDanymiUzytkownika += uzytkownik.pobierzHaslo() + '|';
-//
-//    return liniaZDanymiUzytkownika;
-//}
-
 vector <User> UsersFile::loadUsersDataFromXmlFile() {
     CMarkup xml;
     User user;
@@ -94,33 +58,31 @@ void UsersFile::writeUserDataToXmlFile(User user) {
     }
 }
 
-void UsersFile::writeAllUsersToXmlFile(vector <User> &users) {
-//    fstream plikTekstowy;
-//    string liniaZDanymiUzytkownika = "";
-//    vector <Uzytkownik>::iterator itrKoniec = --uzytkownicy.end();
-//
-//    plikTekstowy.open(pobierzNazwePliku().c_str(), ios::out);
-//
-//    if (plikTekstowy.good() == true)
-//    {
-//        for (vector <Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++)
-//        {
-//            liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(*itr);
-//
-//            if (itr == itrKoniec)
-//            {
-//               plikTekstowy << liniaZDanymiUzytkownika;
-//            }
-//            else
-//            {
-//                plikTekstowy << liniaZDanymiUzytkownika << endl;
-//            }
-//            liniaZDanymiUzytkownika = "";
-//        }
-//    }
-//    else
-//    {
-//        cout << "Nie mozna otworzyc pliku " << pobierzNazwePliku() << endl;
-//    }
-//    plikTekstowy.close();
+void UsersFile::changePasswordInXmlFile(User user) {
+    CMarkup xml;
+    int loggedInUserId = user.getUserId();
+    bool check = false;
+    if (!xml.Load(getFilename())) {
+        cout << "Blad odczytu pliku!";
+    } else {
+        xml.FindElem("UsersFile");
+        xml.IntoElem();
+        xml.FindElem("User");
+        xml.IntoElem();
+        do {
+            xml.FindElem("UserId");
+            if (atoi(xml.GetData().c_str())!=loggedInUserId)
+                xml.OutOfElem();
+            else {
+                xml.FindElem("Password");
+                xml.SetData(user.getPassword());
+                check = true;
+                xml.OutOfElem();
+                xml.OutOfElem();
+                xml.OutOfElem();
+
+                xml.Save(getFilename());
+            }
+        } while (check == false);
+    }
 }

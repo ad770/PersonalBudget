@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1637269340 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expensesfile.cpp
+1637790436 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expensesfile.cpp
 	"ExpensesFile.h"
 
-1635448528 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expensesfile.h
+1637790638 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expensesfile.h
 	<iostream>
 	<algorithm>
 	<vector>
@@ -27,10 +27,10 @@
 	<string>
 	<afx.h>
 
-1637273646 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.cpp
+1637795429 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.cpp
 	"TransactionsManager.h"
 
-1636577123 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.h
+1637613842 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.h
 	<iostream>
 	<vector>
 	<windows.h>
@@ -38,6 +38,7 @@
 	<sstream>
 	<ctime>
 	<string>
+	<iomanip>
 	"Transaction.h"
 	"IncomesFile.h"
 	"ExpensesFile.h"
@@ -50,10 +51,10 @@
 1635448529 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\user.h
 	<iostream>
 
-1637272440 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.cpp
+1637790436 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.cpp
 	"AuxiliaryMethods.h"
 
-1637269359 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.h
+1637790436 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.h
 	<iostream>
 	<sstream>
 	<algorithm>
@@ -62,10 +63,10 @@
 	<ctime>
 	"Markup.h"
 
-1635448529 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\textfile.cpp
+1637613842 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\textfile.cpp
 	"TextFile.h"
 
-1635448529 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\textfile.h
+1637613842 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\textfile.h
 	<iostream>
 	<fstream>
 
@@ -89,10 +90,10 @@
 	<iostream>
 	"Transaction.h"
 
-1637269340 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.h
+1637613842 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.h
 	<iostream>
 
-1637269340 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.cpp
+1637613842 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.cpp
 	"Transaction.h"
 
 1635448528 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expense.cpp
@@ -102,10 +103,10 @@
 	<iostream>
 	"Transaction.h"
 
-1636625348 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\incomesfile.cpp
+1637790638 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\incomesfile.cpp
 	"IncomesFile.h"
 
-1635448528 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\incomesfile.h
+1637790638 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\incomesfile.h
 	<iostream>
 	<algorithm>
 	<vector>
@@ -116,7 +117,7 @@
 	"AuxiliaryMethods.h"
 	"Markup.h"
 
-1635448529 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\usersfile.h
+1637790436 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\usersfile.h
 	<iostream>
 	<vector>
 	<cstdlib>
@@ -125,10 +126,10 @@
 	"TextFile.h"
 	"Markup.h"
 
-1635448529 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\usermanager.cpp
+1637790638 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\usermanager.cpp
 	"UserManager.h"
 
-1635448529 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\usermanager.h
+1637790638 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\usermanager.h
 	<iostream>
 	<vector>
 	<windows.h>
@@ -143,7 +144,7 @@
 	<iostream>
 	"PersonalBudget.h"
 
-1635448529 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\personalbudget.h
+1637790677 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\personalbudget.h
 	<iostream>
 	"TransactionsManager.h"
 	"UserManager.h"
@@ -151,9 +152,9 @@
 	"IncomesFile.h"
 	"ExpensesFile.h"
 
-1635448529 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\personalbudget.cpp
+1637790677 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\personalbudget.cpp
 	"PersonalBudget.h"
 
-1635448529 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\usersfile.cpp
+1637790031 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\usersfile.cpp
 	"UsersFile.h"
 

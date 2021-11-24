@@ -32,7 +32,6 @@ public:
     void userRegistration();
     void userLogging();
     void changeLoggedInUserPassword();
-    void displayAllUsers();
     int getLoggedInUserId();
     int userLogout();
     bool isUserLoggedIn();

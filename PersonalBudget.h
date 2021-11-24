@@ -83,7 +83,6 @@ public:
     void showBalanceOfPreviousMonth();
     void showBalanceOfSelectedPeriod();
     void changeLoggedInUserPassword();
-    void displayAllUsers();
 };
 
 #endif // PERSONALBUDGET_H
