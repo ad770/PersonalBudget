@@ -6,4 +6,16 @@
 <Item>wyplata</Item>
 <Value>5800.86</Value>
 </Income>
+<Income>
+<UserId>1</UserId>
+<Date>2021-11-22</Date>
+<Item>1</Item>
+<Value>1000</Value>
+</Income>
+<Income>
+<UserId>1</UserId>
+<Date>20211115</Date>
+<Item>1</Item>
+<Value>1500</Value>
+</Income>
 </IncomesFile>

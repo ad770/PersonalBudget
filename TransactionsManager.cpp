@@ -17,7 +17,7 @@ Income TransactionsManager::setNewIncomeData() {
             cout << "Wprowadzono niepoprawna date, sprobuj ponownie" << endl;
             check = false;
         } else {
-            income.setDate(newDate);
+            income.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(newDate));
             check = true;
         }
     } while (check==false);
