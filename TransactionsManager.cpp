@@ -1,27 +1,45 @@
 #include "TransactionsManager.h"
 
-Income TransactionsManager::setNewIncomeData() {
+Income TransactionsManager::setNewIncomeDetails() {
     Income income;
 
-    income.setIncomeId(getNewIncomeId());
     income.setUserId(LOGGED_IN_USER_ID);
+    income.setTransactionId(getNewTransactionId());
     bool check;
-    do {
-        string newDate;
-        cout << "Podaj date [rrrr-mm-dd]: ";
-        newDate = AuxiliaryMethods::inputLine();
-        if (AuxiliaryMethods::checkDateFormat(newDate)==false) {
-            cout << "Wprowadz date w poprawnym formacie [rrrr-mm-dd], sprobuj ponownie" << endl;
-            check = false;
-        } else if (AuxiliaryMethods::checkDateScope(newDate)==false) {
-            cout << "Wprowadzono niepoprawna date, sprobuj ponownie" << endl;
-            check = false;
-        } else {
-            income.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(newDate));
-            check = true;
-        }
-    } while (check==false);
+    string newDate;
+    choice = menu.selectFromIncomesMenu();
+    switch (choice) {
+    case '1':
+        time_t currentTime;
+        time (&currentTime);
 
+        struct tm currentDate;
+        currentDate = *localtime(&currentTime);
+
+        newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
+        income.setDate(newDate);
+        break;
+    case '2':
+        do {
+            cout << "Podaj date [rrrr-mm-dd]: ";
+            newDate = AuxiliaryMethods::inputLine();
+            if (AuxiliaryMethods::checkDateFormat(newDate)==false) {
+                cout << "Wprowadz date w poprawnym formacie [rrrr-mm-dd], sprobuj ponownie" << endl;
+                check = false;
+            } else if (AuxiliaryMethods::checkDateScope(newDate)==false) {
+                cout << "Wprowadzono niepoprawna date, sprobuj ponownie" << endl;
+                check = false;
+            } else {
+                income.setDate(newDate);
+                check = true;
+            }
+        }        while (check==false);
+        break;
+    default:
+        cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+        system("pause");
+        break;
+    }
     cout << "Podaj kategorie: ";
     income.setItem(AuxiliaryMethods::inputLine());
 
@@ -30,28 +48,47 @@ Income TransactionsManager::setNewIncomeData() {
 
     return income;
 }
-Expense TransactionsManager::setNewExpenseData() {
+Expense TransactionsManager::setNewExpenseDetails() {
     Expense expense;
 
-    expense.setExpenseId(getNewExpenseId());
     expense.setUserId(LOGGED_IN_USER_ID);
-    bool check;
-    do {
-        string newDate;
-        cout << "Podaj date [rrrr-mm-dd]: ";
-        newDate = AuxiliaryMethods::inputLine();
-        if (AuxiliaryMethods::checkDateFormat(newDate)==false) {
-            cout << "Wprowadz date w poprawnym formacie [rrrr-mm-dd], sprobuj ponownie" << endl;
-            check = false;
-        } else if (AuxiliaryMethods::checkDateScope(newDate)==false) {
-            cout << "Wprowadzono niepoprawna date, sprobuj ponownie" << endl;
-            check = false;
-        } else {
-            expense.setDate(newDate);
-            check = true;
-        }
-    } while (check==false);
+    expense.setTransactionId(getNewTransactionId());
 
+    bool check;
+    string newDate;
+    choice = menu.selectFromExpensesMenu();
+    switch (choice) {
+    case '1':
+        time_t currentTime;
+        time (&currentTime);
+
+        struct tm currentDate;
+        currentDate = *localtime(&currentTime);
+
+        newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
+        expense.setDate(newDate);
+        break;
+    case '2':
+        do {
+            cout << "Podaj date [rrrr-mm-dd]: ";
+            newDate = AuxiliaryMethods::inputLine();
+            if (AuxiliaryMethods::checkDateFormat(newDate)==false) {
+                cout << "Wprowadz date w poprawnym formacie [rrrr-mm-dd], sprobuj ponownie" << endl;
+                check = false;
+            } else if (AuxiliaryMethods::checkDateScope(newDate)==false) {
+                cout << "Wprowadzono niepoprawna date, sprobuj ponownie" << endl;
+                check = false;
+            } else {
+                expense.setDate(newDate);
+                check = true;
+            }
+        }        while (check==false);
+        break;
+    default:
+        cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+        system("pause");
+        break;
+    }
     cout << "Podaj kategorie: ";
     expense.setItem(AuxiliaryMethods::inputLine());
 
@@ -60,35 +97,31 @@ Expense TransactionsManager::setNewExpenseData() {
 
     return expense;
 }
-int TransactionsManager::getNewIncomeId() {
-    if (incomes.empty() == true)
-        return 1;
-    else
-        return incomes.back().getIncomeId() + 1;
-}
 
-int TransactionsManager::getNewExpenseId() {
-    if (expenses.empty() == true)
-        return 1;
+int TransactionsManager::getNewTransactionId() {
+    if (incomesFile.getLastTransactionId() > expensesFile.getLastTransactionId())
+        return incomesFile.getLastTransactionId()+1;
     else
-        return expenses.back().getExpenseId() + 1;
+        return expensesFile.getLastTransactionId()+1;
 }
 
 void TransactionsManager::addIncome() {
-    Income income = setNewIncomeData();
-
-    incomes.push_back(income);
+    Income income = setNewIncomeDetails();
     incomesFile.writeIncomeToXmlFile(income);
+
+    income.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(income.getDate()));
+    incomes.push_back(income);
 
     cout << endl << "Przychod dodano pomyslnie" << endl << endl;
     system("pause");
 }
 
 void TransactionsManager::addExpense() {
-    Expense expense = setNewExpenseData();
-
-    expenses.push_back(expense);
+    Expense expense = setNewExpenseDetails();
     expensesFile.writeExpenseToXmlFile(expense);
+
+    expense.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(expense.getDate()));
+    expenses.push_back(expense);
 
     cout << endl << "Wydatek dodano pomyslnie" << endl << endl;
     system("pause");
@@ -150,7 +183,7 @@ void TransactionsManager::showBalanceOfPreviousMonth() {
     if (currentDate.tm_mon==0)
         beginOfPreviousMonthInString = to_string(currentDate.tm_year -= 1)+to_string(currentDate.tm_mon +=12)+"01";
     else
-    beginOfPreviousMonthInString = to_string(currentDate.tm_year)+to_string(currentDate.tm_mon)+"01";
+        beginOfPreviousMonthInString = to_string(currentDate.tm_year)+to_string(currentDate.tm_mon)+"01";
 
     string endOfPreviousMonthInString;
     if (currentDate.tm_mon==0)

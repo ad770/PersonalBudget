@@ -21,8 +21,8 @@ vector <Income> IncomesFile::loadIncomesOfLoggedInUserFromXmlFile(int loggedInUs
             xml.OutOfElem();
         else {
             income.setUserId(atoi(xml.GetData().c_str()));
-            xml.FindElem("IncomeId");
-            income.setIncomeId(atoi(xml.GetData().c_str()));
+            xml.FindElem("TransactionId");
+            income.setTransactionId(atoi(xml.GetData().c_str()));
             xml.FindElem("Date");
             income.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(xml.GetData()));
             xml.FindElem("Item");
@@ -47,6 +47,7 @@ void IncomesFile::writeIncomeToXmlFile(Income income) {
         xml.AddElem("Income");
         xml.IntoElem();
         xml.AddElem("UserId",income.getUserId());
+        xml.AddElem("TransactionId",income.getTransactionId());
         xml.AddElem("Date",income.getDate());
         xml.AddElem("Item",income.getItem());
         xml.AddElem("Value",income.getValue());
@@ -56,4 +57,23 @@ void IncomesFile::writeIncomeToXmlFile(Income income) {
 
         xml.Save(getFilename());
     }
+}
+
+int IncomesFile::getLastTransactionId() {
+    CMarkup xml;
+    int lastTransactionId = 0;
+    if (!xml.Load(getFilename())) {
+        cout << "Blad odczytu pliku!";
+    } else {
+
+        xml.FindElem("IncomesFile");
+        xml.IntoElem();
+        while (xml.FindElem("Income")) {
+            xml.IntoElem();
+            xml.FindElem("TransactionId");
+            lastTransactionId = atoi(xml.GetData().c_str());
+            xml.OutOfElem();
+        }
+    }
+    return lastTransactionId;
 }

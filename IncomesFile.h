@@ -24,6 +24,7 @@ public:
 
     vector <Income> loadIncomesOfLoggedInUserFromXmlFile(int loggedInUserId);
     void writeIncomeToXmlFile(Income income);
+    int getLastTransactionId();
 };
 
 #endif // INCOMESFILE_H

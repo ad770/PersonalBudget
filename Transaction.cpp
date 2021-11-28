@@ -5,6 +5,11 @@ void Transaction::setUserId(int newUserId) {
         userId = newUserId;
     }
 }
+void Transaction::setTransactionId(int newTransactionId) {
+    if (newTransactionId>=0){
+        transactionId = newTransactionId;
+    }
+}
 void Transaction::setDate(string newDate) {
     date = newDate;
 }
@@ -17,6 +22,9 @@ void Transaction::setValue(string newValue) {
 
 int Transaction::getUserId() {
     return userId;
+}
+int Transaction::getTransactionId() {
+    return transactionId;
 }
 string Transaction::getDate() {
     return date;

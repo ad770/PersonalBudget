@@ -45,23 +45,20 @@ char Menu::selectFromIncomesMenu() {
     cout << "---------------------------" << endl;
     cout << "1 - Dodaj dzisiejszy przychod" << endl;
     cout << "2 - Dodaj przychod z inna data" << endl;
-    cout << "3 - Powrot " << endl;
     cout << endl << "Twoj wybor: ";
     choice = AuxiliaryMethods::inputChar();
 
     return choice;
-
 }
-
 
 char Menu::selectFromExpensesMenu() {
     char choice;
 
+    system("cls");
     cout << endl << "   >>> DODAJ WYDATEK <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1 - Dodaj dzisiejszy wydatek" << endl;
     cout << "2 - Dodaj wydatek z inna data" << endl;
-    cout << "3 - Powrot " << endl;
     cout << endl << "Twoj wybor: ";
     choice = AuxiliaryMethods::inputChar();
 

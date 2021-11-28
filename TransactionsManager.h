@@ -25,14 +25,14 @@ class TransactionsManager {
     IncomesFile incomesFile;
     ExpensesFile expensesFile;
     Menu menu;
-    int getNewIncomeId();
-    int getNewExpenseId();
+    int getNewTransactionId();
 
     string incomesFilename = "Incomes.xml";
     string expensesFilename = "Expenses.xml";
+    char choice;
 
-    Income setNewIncomeData();
-    Expense setNewExpenseData();
+    Income setNewIncomeDetails();
+    Expense setNewExpenseDetails();
 
 public:
     TransactionsManager(string incomesFilename, string expensesFilename, int loggedInUserId)

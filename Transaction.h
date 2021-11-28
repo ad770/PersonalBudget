@@ -8,17 +8,20 @@ using namespace std;
 class Transaction {
 
     int userId;
+    int transactionId;
     string date;
     string item;
     string value;
 
 public:
     void setUserId(int newUserId);
+    void setTransactionId(int newTransactionId);
     void setDate(string newDate);
     void setItem(string newItem);
     void setValue(string newValue);
 
     int getUserId();
+    int getTransactionId();
     string getDate();
     string getItem();
     string getValue();

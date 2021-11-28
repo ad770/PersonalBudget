@@ -24,6 +24,7 @@ public:
 
     vector <Expense> loadExpensesOfLoggedInUserFromXmlFile(int loggedInUserId);
     void writeExpenseToXmlFile(Expense expense);
+    int getLastTransactionId();
 };
 
 #endif // EXPENSESFILE_H

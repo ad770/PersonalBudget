@@ -21,8 +21,8 @@ vector <Expense> ExpensesFile::loadExpensesOfLoggedInUserFromXmlFile(int loggedI
             xml.OutOfElem();
         else {
             expense.setUserId(atoi(xml.GetData().c_str()));
-            xml.FindElem("ExpenseId");
-            expense.setExpenseId(atoi(xml.GetData().c_str()));
+            xml.FindElem("TransactionId");
+            expense.setTransactionId(atoi(xml.GetData().c_str()));
             xml.FindElem("Date");
             expense.setDate(AuxiliaryMethods::convertDateToIntWithoutDashes(xml.GetData()));
             xml.FindElem("Item");
@@ -47,6 +47,7 @@ void ExpensesFile::writeExpenseToXmlFile(Expense expense) {
         xml.AddElem("Expense");
         xml.IntoElem();
         xml.AddElem("UserId",expense.getUserId());
+        xml.AddElem("TransactionId",expense.getTransactionId());
         xml.AddElem("Date",expense.getDate());
         xml.AddElem("Item",expense.getItem());
         xml.AddElem("Value",expense.getValue());
@@ -56,4 +57,23 @@ void ExpensesFile::writeExpenseToXmlFile(Expense expense) {
 
         xml.Save(getFilename());
     }
+}
+
+int ExpensesFile::getLastTransactionId() {
+    CMarkup xml;
+    int lastTransactionId = 0;
+    if (!xml.Load(getFilename())) {
+        cout << "Blad odczytu pliku!";
+    } else {
+
+        xml.FindElem("ExpensesFile");
+        xml.IntoElem();
+        while (xml.FindElem("Expense")) {
+            xml.IntoElem();
+            xml.FindElem("TransactionId");
+            lastTransactionId = atoi(xml.GetData().c_str());
+            xml.OutOfElem();
+        }
+    }
+    return lastTransactionId;
 }
