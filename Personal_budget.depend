@@ -27,10 +27,10 @@
 	<string>
 	<afx.h>
 
-1638349855 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.cpp
+1638351682 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.cpp
 	"TransactionsManager.h"
 
-1638308486 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.h
+1638350336 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.h
 	<iostream>
 	<vector>
 	<windows.h>
@@ -52,10 +52,10 @@
 1635448529 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\user.h
 	<iostream>
 
-1638313608 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.cpp
+1638350017 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.cpp
 	"AuxiliaryMethods.h"
 
-1638313338 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.h
+1638350017 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.h
 	<iostream>
 	<iomanip>
 	<sstream>
@@ -93,10 +93,10 @@
 	<iostream>
 	"Transaction.h"
 
-1638309160 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.h
+1638350017 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.h
 	<iostream>
 
-1638309145 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.cpp
+1638350017 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.cpp
 	"Transaction.h"
 
 1635448528 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expense.cpp

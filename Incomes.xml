@@ -56,4 +56,11 @@
 <Item/>
 <Value>225522.00</Value>
 </Income>
+<Income>
+<UserId>1</UserId>
+<TransactionId>16</TransactionId>
+<Date>2021-12-02</Date>
+<Item>2</Item>
+<Value>25588.00</Value>
+</Income>
 </IncomesFile>

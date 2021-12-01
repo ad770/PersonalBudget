@@ -34,6 +34,7 @@ class TransactionsManager {
 
     Income setNewIncomeDetails();
     Expense setNewExpenseDetails();
+    string getCurrentDate();
 
 public:
     TransactionsManager(string incomesFilename, string expensesFilename, int loggedInUserId)

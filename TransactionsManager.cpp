@@ -1,15 +1,7 @@
 #include "TransactionsManager.h"
 
-Income TransactionsManager::setNewIncomeDetails() {
-    Income income;
-
-    income.setUserId(LOGGED_IN_USER_ID);
-    income.setTransactionId(getNewTransactionId());
-    bool check;
+string TransactionsManager::getCurrentDate() {
     string newDate;
-    choice = menu.selectFromIncomesMenu();
-    switch (choice) {
-    case '1':
         time_t currentTime;
         time (&currentTime);
 
@@ -23,6 +15,21 @@ Income TransactionsManager::setNewIncomeDetails() {
             newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
         else
             newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
+
+    return newDate;
+}
+
+Income TransactionsManager::setNewIncomeDetails() {
+    Income income;
+    bool check;
+    string newDate;
+
+    income.setUserId(LOGGED_IN_USER_ID);
+    income.setTransactionId(getNewTransactionId());
+    choice = menu.selectFromIncomesMenu();
+    switch (choice) {
+    case '1':
+        newDate = getCurrentDate();
         income.setDate(newDate);
         break;
     case '2':
@@ -56,29 +63,15 @@ Income TransactionsManager::setNewIncomeDetails() {
 }
 Expense TransactionsManager::setNewExpenseDetails() {
     Expense expense;
+    bool check;
+    string newDate;
 
     expense.setUserId(LOGGED_IN_USER_ID);
     expense.setTransactionId(getNewTransactionId());
-
-    bool check;
-    string newDate;
     choice = menu.selectFromExpensesMenu();
     switch (choice) {
     case '1':
-        time_t currentTime;
-        time (&currentTime);
-
-        struct tm currentDate;
-        currentDate = *localtime(&currentTime);
-
-        if (currentDate.tm_mday<9 && currentDate.tm_mon<9)
-            newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+"0"+to_string(currentDate.tm_mday +=1);
-        else if (currentDate.tm_mday<9)
-            newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+"0"+to_string(currentDate.tm_mday +=1);
-        else if (currentDate.tm_mon<9)
-            newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
-        else
-            newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
+        newDate = getCurrentDate();
         expense.setDate(newDate);
         break;
     case '2':
