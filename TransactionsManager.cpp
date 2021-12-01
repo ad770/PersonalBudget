@@ -15,8 +15,14 @@ Income TransactionsManager::setNewIncomeDetails() {
 
         struct tm currentDate;
         currentDate = *localtime(&currentTime);
-
-        newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
+        if (currentDate.tm_mday<9 && currentDate.tm_mon<9)
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+"0"+to_string(currentDate.tm_mday +=1);
+        else if (currentDate.tm_mday<9)
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+"0"+to_string(currentDate.tm_mday +=1);
+        else if (currentDate.tm_mon<9)
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
+        else
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
         income.setDate(newDate);
         break;
     case '2':
@@ -44,7 +50,7 @@ Income TransactionsManager::setNewIncomeDetails() {
     income.setItem(AuxiliaryMethods::inputLine());
 
     cout << "Podaj wartosc: ";
-    income.setValue(AuxiliaryMethods::convertCommaToDot(AuxiliaryMethods::inputLine()));
+    income.setValue(AuxiliaryMethods::checkValueFormat(AuxiliaryMethods::convertCommaToDot(AuxiliaryMethods::inputLine())));
 
     return income;
 }
@@ -65,7 +71,14 @@ Expense TransactionsManager::setNewExpenseDetails() {
         struct tm currentDate;
         currentDate = *localtime(&currentTime);
 
-        newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
+        if (currentDate.tm_mday<9 && currentDate.tm_mon<9)
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+"0"+to_string(currentDate.tm_mday +=1);
+        else if (currentDate.tm_mday<9)
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+"0"+to_string(currentDate.tm_mday +=1);
+        else if (currentDate.tm_mon<9)
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
+        else
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
         expense.setDate(newDate);
         break;
     case '2':
@@ -93,7 +106,7 @@ Expense TransactionsManager::setNewExpenseDetails() {
     expense.setItem(AuxiliaryMethods::inputLine());
 
     cout << "Podaj wartosc: ";
-    expense.setValue(AuxiliaryMethods::convertCommaToDot(AuxiliaryMethods::inputLine()));
+    expense.setValue(AuxiliaryMethods::checkValueFormat(AuxiliaryMethods::convertCommaToDot(AuxiliaryMethods::inputLine())));
 
     return expense;
 }
@@ -128,6 +141,7 @@ void TransactionsManager::addExpense() {
 }
 
 void TransactionsManager::showBalanceOfCurrentMonth() {
+    system("cls");
     time_t currentTime;
     time (&currentTime);
 
@@ -139,20 +153,34 @@ void TransactionsManager::showBalanceOfCurrentMonth() {
     double expensesSum = 0;
     double monthlyBalance = 0;
 
+    sort(incomes.begin(), incomes.end(), [](const Income& lhs, const Income& rhs) {
+        return lhs.getDate() < rhs.getDate();
+    });
+    sort(expenses.begin(), expenses.end(), [](const Expense& lhs, const Expense& rhs) {
+        return lhs.getDate() < rhs.getDate();
+    });
+
     string beginOfCurrentMonthInString = to_string(currentDate.tm_year)+to_string(currentDate.tm_mon += 1)+"01";
 
-    for (vector <Income>::iterator incomeItr = incomes.begin(); incomeItr != incomes.end(); incomeItr++) {
+    cout << setw(5) << "Ponizej znajduje sie zestawienie Twojego bilansu z obecnego miesiaca" << endl << endl;
+
+    cout << setw(15) << "Wartosc" << setw(20) << "Kategoria" << setw(15) << "Data" << endl;
+    for (auto incomeItr = incomes.begin(); incomeItr != incomes.end(); incomeItr++) {
         if (incomeItr -> getDate() >= beginOfCurrentMonthInString) {
             incomesSum += stod(incomeItr -> getValue());
+            cout << setw(15) << incomeItr -> getValue() << setw(20) << incomeItr -> getItem() << setw(15) << AuxiliaryMethods::convertDateToIntWithDashes(incomeItr -> getDate()) << endl;
         }
     }
-    cout << "Wplywy: " << incomesSum << endl;
-    for (vector <Expense>::iterator expenseItr = expenses.begin(); expenseItr != expenses.end(); expenseItr++) {
+    cout << setw(30) << "Wplywy ogolem: " << fixed << setprecision(2) << incomesSum << " zl" << endl << endl;
+
+    cout << setw(15) << "Wartosc" << setw(20) << "Kategoria" << setw(15) << "Data" << endl;
+    for (auto expenseItr = expenses.begin(); expenseItr != expenses.end(); expenseItr++) {
         if (expenseItr -> getDate() >= beginOfCurrentMonthInString) {
             expensesSum += stod(expenseItr -> getValue());
+            cout << setw(15) << expenseItr -> getValue() << setw(20) << expenseItr -> getItem() << setw(15) << AuxiliaryMethods::convertDateToIntWithDashes(expenseItr -> getDate()) << endl;
         }
     }
-    cout << "Wydatki: " << expensesSum << endl;
+    cout << setw(30) << "Wydatki ogolem: " << fixed << setprecision(2) << expensesSum << " zl" << endl << endl;
 
     monthlyBalance = incomesSum - expensesSum;
 
@@ -162,12 +190,12 @@ void TransactionsManager::showBalanceOfCurrentMonth() {
     } else {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
     }
-    cout << fixed;
-    cout << setprecision(2) << monthlyBalance << " zl" << endl;
+    cout << fixed << setprecision(2) << monthlyBalance << " zl" << endl;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
     system("pause");
 }
 void TransactionsManager::showBalanceOfPreviousMonth() {
+    system("cls");
     time_t currentTime;
     time (&currentTime);
 
@@ -191,18 +219,33 @@ void TransactionsManager::showBalanceOfPreviousMonth() {
     else
         endOfPreviousMonthInString = to_string(currentDate.tm_year)+to_string(currentDate.tm_mon)+"31";
 
-    for (vector <Income>::iterator incomeItr = incomes.begin(); incomeItr != incomes.end(); incomeItr++) {
+    sort(incomes.begin(), incomes.end(), [](const Income& lhs, const Income& rhs) {
+        return lhs.getDate() < rhs.getDate();
+    });
+    sort(expenses.begin(), expenses.end(), [](const Expense& lhs, const Expense& rhs) {
+        return lhs.getDate() < rhs.getDate();
+    });
+
+    cout << setw(5) << "Ponizej znajduje sie zestawienie Twojego bilansu z poprzedniego miesiaca" << endl << endl;
+
+    cout << setw(15) << "Wartosc" << setw(20) << "Kategoria" << setw(15) << "Data" << endl;
+    for (auto incomeItr = incomes.begin(); incomeItr != incomes.end(); incomeItr++) {
         if (incomeItr -> getDate() >= beginOfPreviousMonthInString && incomeItr -> getDate() <= endOfPreviousMonthInString) {
             incomesSum += stod(incomeItr -> getValue());
+            cout << setw(15) << incomeItr -> getValue() << setw(20) << incomeItr -> getItem() << setw(15) << AuxiliaryMethods::convertDateToIntWithDashes(incomeItr -> getDate()) << endl;
         }
     }
-    cout << "Wplywy: " << incomesSum << endl;
-    for (vector <Expense>::iterator expenseItr = expenses.begin(); expenseItr != expenses.end(); expenseItr++) {
+    cout << setw(30) << "Wplywy ogolem: " << setprecision(2) << incomesSum << " zl" << endl << endl;
+
+    cout << setw(15) << "Wartosc" << setw(20) << "Kategoria" << setw(15) << "Data" << endl;
+    for (auto expenseItr = expenses.begin(); expenseItr != expenses.end(); expenseItr++) {
         if (expenseItr -> getDate() >= beginOfPreviousMonthInString && expenseItr -> getDate() <= endOfPreviousMonthInString) {
             expensesSum += stod(expenseItr -> getValue());
+            cout << setw(15) << expenseItr -> getValue() << setw(20) << expenseItr -> getItem() << setw(15) << AuxiliaryMethods::convertDateToIntWithDashes(expenseItr -> getDate()) << endl;
         }
     }
-    cout << "Wydatki: " << expensesSum << endl;
+    cout << setw(30) << "Wydatki ogolem: " << setprecision(2) << expensesSum << " zl" << endl << endl;
+
     monthlyBalance = incomesSum - expensesSum;
 
     cout << "Saldo Twojego konta w poprzednim miesiacu wynosi: ";
@@ -211,12 +254,12 @@ void TransactionsManager::showBalanceOfPreviousMonth() {
     } else {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
     }
-    cout << fixed;
-    cout << setprecision(2) << monthlyBalance << " zl" << endl;
+    cout << fixed << setprecision(2) << monthlyBalance << " zl" << endl;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
     system("pause");
 }
 void TransactionsManager::showBalanceOfSelectedPeriod() {
+    system("cls");
     time_t currentTime;
     time (&currentTime);
 
@@ -261,28 +304,43 @@ void TransactionsManager::showBalanceOfSelectedPeriod() {
         }
     } while (check==false);
 
+    sort(incomes.begin(), incomes.end(), [](const Income& lhs, const Income& rhs) {
+        return lhs.getDate() < rhs.getDate();
+    });
+    sort(expenses.begin(), expenses.end(), [](const Expense& lhs, const Expense& rhs) {
+        return lhs.getDate() < rhs.getDate();
+    });
+
+    cout << setw(5) << "Ponizej znajduje sie zestawienie Twojego bilansu w okresie " <<
+    AuxiliaryMethods::convertDateToIntWithDashes(beginOfSelectedPeriodInString) << " - " << AuxiliaryMethods::convertDateToIntWithDashes(endOfSelectedPeriodInString) << endl << endl;
+
+    cout << setw(15) << "Wartosc" << setw(20) << "Kategoria" << setw(15) << "Data" << endl;
     for (vector <Income>::iterator incomeItr = incomes.begin(); incomeItr != incomes.end(); incomeItr++) {
         if (incomeItr -> getDate() >= beginOfSelectedPeriodInString && incomeItr -> getDate() <= endOfSelectedPeriodInString) {
             incomesSum += stod(incomeItr -> getValue());
+            cout << setw(15) << incomeItr -> getValue() << setw(20) << incomeItr -> getItem() << setw(15) << AuxiliaryMethods::convertDateToIntWithDashes(incomeItr -> getDate()) << endl;
         }
     }
-    cout << "Wplywy: " << incomesSum << endl;
+    cout << setw(30) << "Wplywy ogolem: " << setprecision(2) << incomesSum << " zl" << endl << endl;
+
+    cout << setw(15) << "Wartosc" << setw(20) << "Kategoria" << setw(15) << "Data" << endl;
     for (vector <Expense>::iterator expenseItr = expenses.begin(); expenseItr != expenses.end(); expenseItr++) {
         if (expenseItr -> getDate() >= beginOfSelectedPeriodInString && expenseItr -> getDate() <= endOfSelectedPeriodInString) {
             expensesSum += stod(expenseItr -> getValue());
+            cout << setw(15) << expenseItr -> getValue() << setw(20) << expenseItr -> getItem() << setw(15) << AuxiliaryMethods::convertDateToIntWithDashes(expenseItr -> getDate()) << endl;
         }
     }
-    cout << "Wydatki: " << expensesSum << endl;
+    cout << setw(30) << "Wydatki ogolem: " << setprecision(2) << expensesSum << " zl" << endl << endl;
+
     monthlyBalance = incomesSum - expensesSum;
 
-    cout << "Saldo Twojego konta w poprzednim miesiacu wynosi: ";
+    cout << "Saldo Twojego konta w wybranym okresie wynosi: ";
     if (monthlyBalance>=0) {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     } else {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
     }
-    cout << fixed;
-    cout << setprecision(2) << monthlyBalance << " zl" << endl;
+    cout << fixed << setprecision(2) << monthlyBalance << " zl" << endl;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
     system("pause");
 }

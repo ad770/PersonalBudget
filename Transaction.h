@@ -22,7 +22,7 @@ public:
 
     int getUserId();
     int getTransactionId();
-    string getDate();
+    string getDate() const;
     string getItem();
     string getValue();
 };

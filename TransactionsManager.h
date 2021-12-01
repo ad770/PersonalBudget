@@ -15,6 +15,7 @@
 #include "ExpensesFile.h"
 #include "AuxiliaryMethods.h"
 #include "Menu.h"
+#include "Transaction.h"
 
 using namespace std;
 

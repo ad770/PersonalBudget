@@ -51,12 +51,23 @@ string AuxiliaryMethods::swapToFirstCapitalLetterThanLowercaseLetters(string inp
 }
 bool AuxiliaryMethods::checkDateFormat(string inputDate) {
     bool check = true;
+    int counter = 0;
 
-    for (int i=0; i<inputDate.length(); i++) {
-        if (i==4 || i==7) {
-            if (inputDate[i] != 45) check = false;
-            continue;
-        } else if (inputDate[i] < 48 || inputDate[i] > 57) check = false;
+    if (inputDate.length()!=10) {
+        check=false;
+    } else {
+        for (int i=0; (unsigned)i<inputDate.length(); i++) {
+            if (inputDate[i]==45) counter++;
+        }
+        if (counter!=2) {
+            check = false;
+        } else {
+            for (int i=0; (unsigned)i<inputDate.length(); i++) {
+                if (i==4 || i==7) {
+                    if (inputDate[i] != 45) check = false;
+                } else if (inputDate[i] < 48 || inputDate[i] > 57) check = false;
+            }
+        }
     }
     return check;
 }
@@ -81,49 +92,32 @@ bool AuxiliaryMethods::checkDateScope(string inputDate) {
 string AuxiliaryMethods::convertDateToIntWithoutDashes(string date) {
     string dateWithoutDashes = date;
 
-    for (int i=0; i<dateWithoutDashes.length(); i++) {
+    for (int i=0; (unsigned)i<dateWithoutDashes.length(); i++) {
         if (dateWithoutDashes[i]==45)
             dateWithoutDashes.erase(i,1);
     }
     return dateWithoutDashes;
 }
+string AuxiliaryMethods::convertDateToIntWithDashes(string date) {
+    string dateWithDashes = date;
+    if (dateWithDashes.length()==(unsigned)8) {
+        dateWithDashes.insert(4,"-");
+        dateWithDashes.insert(7,"-");
+    }
+    return dateWithDashes;
+}
 string AuxiliaryMethods::convertCommaToDot(string value) {
-    for (int i=0; i<value.length(); i++) {
+    for (int i=0; (unsigned)i<value.length(); i++) {
         if (value[i]==44)
             value[i]=46;
     }
     return value;
 }
-int AuxiliaryMethods::stringToInt(string number) {
-    int integer;
-    string shortNumber;
+string AuxiliaryMethods::checkValueFormat(string value) {
+    double newValue = stod(value);
+    stringstream stream;
+    stream << fixed << setprecision(2) << newValue;
+    value = stream.str();
 
-    shortNumber = number.erase(4,1);
-    shortNumber = shortNumber.erase(6,1);
-
-    istringstream iss(shortNumber);
-    iss >> integer;
-
-    return integer;
-}
-string AuxiliaryMethods::intToString(int number) {
-    string shortNumber, numberWithDash;
-
-    ostringstream ss;
-    ss << number;
-    shortNumber = ss.str();
-    numberWithDash = shortNumber.insert(4,"-");
-    numberWithDash = numberWithDash.insert(7,"-");
-
-    return numberWithDash;
-}
-void AuxiliaryMethods::changeFilename(string oldFilename, string newFilename) {
-    if (rename(oldFilename.c_str(), newFilename.c_str()) == 0) {}
-    else
-        cout << "Nazwa pliku nie zostala zmieniona." << oldFilename << endl;
-}
-void AuxiliaryMethods::deleteFile(string filenameWithFiletype) {
-    if (remove(filenameWithFiletype.c_str()) == 0) {}
-    else
-        cout << "Nie udalo sie usunac pliku " << filenameWithFiletype << endl;
+    return value;
 }

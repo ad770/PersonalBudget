@@ -26,7 +26,7 @@ int Transaction::getUserId() {
 int Transaction::getTransactionId() {
     return transactionId;
 }
-string Transaction::getDate() {
+string Transaction::getDate() const {
     return date;
 }
 string Transaction::getItem() {

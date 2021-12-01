@@ -2,6 +2,8 @@
 #define AUXILIARYMETHODS_H
 
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 #include <sstream>
 #include <algorithm>
 #include <string>
@@ -22,11 +24,9 @@ public:
     static bool checkDateFormat(string inputDate);
     static bool checkDateScope(string inputDate);
     static string convertDateToIntWithoutDashes(string date);
+    static string convertDateToIntWithDashes(string date);
     static string convertCommaToDot(string value);
-    static int stringToInt(string number);
-    static string intToString(int number);
-    static void changeFilename(string oldFilename, string newFilename);
-    static void deleteFile(string filenameWithFiletype);
+    static string checkValueFormat(string value);
 };
 
 #endif // AUXILIARYMETHODS_H

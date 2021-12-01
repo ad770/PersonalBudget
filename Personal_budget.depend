@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1638132642 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expensesfile.cpp
+1638139818 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expensesfile.cpp
 	"ExpensesFile.h"
 
-1638139559 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expensesfile.h
+1638139818 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expensesfile.h
 	<iostream>
 	<algorithm>
 	<vector>
@@ -27,10 +27,10 @@
 	<string>
 	<afx.h>
 
-1638139684 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.cpp
+1638349855 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.cpp
 	"TransactionsManager.h"
 
-1638132734 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.h
+1638308486 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transactionsmanager.h
 	<iostream>
 	<vector>
 	<windows.h>
@@ -44,6 +44,7 @@
 	"ExpensesFile.h"
 	"AuxiliaryMethods.h"
 	"Menu.h"
+	"Transaction.h"
 
 1635448529 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\user.cpp
 	"User.h"
@@ -51,11 +52,13 @@
 1635448529 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\user.h
 	<iostream>
 
-1637795927 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.cpp
+1638313608 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.cpp
 	"AuxiliaryMethods.h"
 
-1637795927 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.h
+1638313338 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\auxiliarymethods.h
 	<iostream>
+	<iomanip>
+	<sstream>
 	<sstream>
 	<algorithm>
 	<string>
@@ -76,7 +79,7 @@
 1635276193 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transtaction.h
 	<iostream>
 
-1638133758 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\menu.cpp
+1638139818 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\menu.cpp
 	"Menu.h"
 
 1638091456 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\menu.h
@@ -90,10 +93,10 @@
 	<iostream>
 	"Transaction.h"
 
-1638091515 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.h
+1638309160 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.h
 	<iostream>
 
-1638091554 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.cpp
+1638309145 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\transaction.cpp
 	"Transaction.h"
 
 1635448528 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\expense.cpp
@@ -103,10 +106,10 @@
 	<iostream>
 	"Transaction.h"
 
-1638139321 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\incomesfile.cpp
+1638139818 source:d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\incomesfile.cpp
 	"IncomesFile.h"
 
-1638138969 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\incomesfile.h
+1638139818 d:\users\adi\pulpit\programowanie\przyszlyprogramista\16_personal_budget\incomesfile.h
 	<iostream>
 	<algorithm>
 	<vector>
