@@ -8,13 +8,13 @@ string TransactionsManager::getCurrentDate() {
         struct tm currentDate;
         currentDate = *localtime(&currentTime);
         if (currentDate.tm_mday<9 && currentDate.tm_mon<9)
-            newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+"0"+to_string(currentDate.tm_mday +=1);
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+"0"+to_string(currentDate.tm_mday);
         else if (currentDate.tm_mday<9)
-            newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+"0"+to_string(currentDate.tm_mday +=1);
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+"0"+to_string(currentDate.tm_mday);
         else if (currentDate.tm_mon<9)
-            newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+"0"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday);
         else
-            newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday +=1);
+            newDate = to_string(currentDate.tm_year +=1900)+"-"+to_string(currentDate.tm_mon +=1)+"-"+to_string(currentDate.tm_mday);
 
     return newDate;
 }
